@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+</head>
+<body>
+    <h1>Products</h1>
+    <ul>
+        <a href="/products/create">Add Product</a>
+        <% if (category !== 'All') {%>
+            <a href="products">All Products</a>
+        <% } %>
+        <% for(let product of products){ %>
+            <li>
+            <%= product.name %> - <%= product.brand %> 
+            <a href="/products/<%= product._id %>"> Detail</a>
+            <a href="/products/<%= product._id %>/edit"> Edit</a>
+            <form action="/products/<%= product._id %>?_method=DELETE" method="post">
+                <button type="submit"onclick="return confirm('Are you sure?')">Delete</button>
+            </form>
+        </li>
+        <% }%>    
+    </ul>
+</body>
+</html>
